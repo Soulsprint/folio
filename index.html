@@ -1196,7 +1196,182 @@
             h2 {
                 font-size: 2.2rem;
             }
-        } 
+        }
+
+
+
+        /* Articles Scroll Container - Horizontal Scrollbar */
+.articles-scroll-container {
+    position: relative;
+    margin-top: 2rem;
+    width: 100%;
+}
+
+.articles-scroll-wrapper {
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 1.5rem;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(128, 128, 128, 0.6) rgba(40, 40, 40, 0.3);
+    cursor: grab;
+    user-select: none;
+}
+
+.articles-scroll-wrapper:active {
+    cursor: grabbing;
+}
+
+/* Custom Webkit Scrollbar for Articles */
+.articles-scroll-wrapper::-webkit-scrollbar {
+    height: 14px;
+}
+
+.articles-scroll-wrapper::-webkit-scrollbar-track {
+    background: rgba(40, 40, 40, 0.4);
+    border-radius: 7px;
+    margin: 0 20px;
+}
+
+.articles-scroll-wrapper::-webkit-scrollbar-thumb {
+    background: linear-gradient(90deg, rgba(128, 128, 128, 0.7), rgba(160, 160, 160, 0.9));
+    border-radius: 7px;
+    border: 3px solid rgba(40, 40, 40, 0.4);
+    transition: background 0.3s ease;
+}
+
+.articles-scroll-wrapper::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(90deg, rgba(128, 128, 128, 0.9), rgba(180, 180, 180, 1));
+}
+
+.articles-slider {
+    display: flex;
+    gap: 2rem;
+    width: fit-content;
+    padding: 0 20px;
+}
+
+/* Hide old slider navigation elements */
+.slider-nav,
+.slider-indicators {
+    display: none !important;
+}
+
+
+
+
+/* Expertise/Featured Work Section */
+.expertise-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
+    margin-top: 2rem;
+}
+
+.expertise-card {
+    position: relative;
+    height: 400px;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    border: 2px solid rgba(128, 128, 128, 0.2);
+    text-decoration: none;
+    display: block;
+    cursor: pointer;
+}
+
+.expertise-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(128, 128, 128, 0.25);
+    border-color: rgba(128, 128, 128, 0.5);
+}
+
+.expertise-bg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.5s ease;
+}
+
+.expertise-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.8));
+    opacity: 0;
+    transition: all 0.5s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.expertise-card:hover .expertise-bg {
+    filter: blur(8px);
+    transform: scale(1.1);
+}
+
+.expertise-card:hover .expertise-overlay {
+    opacity: 1;
+}
+
+.expertise-content {
+    text-align: center;
+    transform: translateY(20px);
+    transition: transform 0.5s ease;
+    position: relative;
+    z-index: 2;
+}
+
+.expertise-card:hover .expertise-content {
+    transform: translateY(0);
+}
+
+.expertise-content h4 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: #ffffff;
+    font-family: 'Georgia', serif;
+    font-weight: 600;
+}
+
+.expertise-content p {
+    color: #e0e0e0;
+    line-height: 1.7;
+    font-size: 1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+    .expertise-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+    }
+    
+    .expertise-card {
+        height: 350px;
+    }
+}
+
+@media (max-width: 768px) {
+    .expertise-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .expertise-card {
+        height: 300px;
+    }
+    
+    .expertise-content h4 {
+        font-size: 1.5rem;
+    }
+    
+    .expertise-content p {
+        font-size: 0.9rem;
+    }
+}
     </style>
 </head>
 <body>
@@ -1288,11 +1463,12 @@
         </div>
     </section>
 
-       <!-- Articles/Work Section -->
-    <section id="articles">
-        <div class="container">
-            <h2>Featured Articles & Reports</h2>
-            <div class="articles-slider-container animate-on-scroll">
+ <!-- Articles/Work Section -->
+<section id="articles">
+    <div class="container">
+        <h2>Featured Articles & Reports</h2>
+        <div class="articles-scroll-container animate-on-scroll">
+            <div class="articles-scroll-wrapper">
                 <div class="articles-slider" id="articlesSlider">
                     <div class="article-card">
                         <div class="article-image">
@@ -1306,231 +1482,154 @@
                         </div>
                         <div class="article-content">
                             <h4>Zee News Work</h4>
-                            <p>
-                                here the small info should get add <br> <br><br><br><br><br><br><br><br>
-                            </p>
-                            
-                            <div class="article-meta">
-
-                            </div>
+                            <p>here the small info should get add <br><br><br><br><br><br><br><br><br></p>
+                            <div class="article-meta"></div>
                             <a href="https://www.linkedin.com/posts/avantika-kansal-b6867938_work-anchoring-anchor-activity-6988862353987522560-6q0j?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAfuAkABhB1P7pA1jtYkW3-5yGS8DzjTJZo" target="_blank" class="read-more-btn">
-                                <svg viewBox="0 0 24 24">
-                                    <path d="M8 5v14l11-7z"/>
-                                </svg>
+                                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                                 Watch More
                             </a>
                         </div>
                     </div>
-                <div class="article-card">
-    <div class="article-image">
-        <img src="https://img.youtube.com/vi/waUJdt_L_tA/maxresdefault.jpg" alt="BKDF Video Links">
-    </div>
-    <div class="article-content">
-        <h4>BKDF Video Links</h4>
-        <p>
-            Covered the Lok Sabha Elections 2024 from various constituencies across India, focusing on key issues, voter sentiments, and regional dynamics. Explored how local narratives shaped national discourse during this pivotal election. Captured stories from the ground — beyond headlines and soundbites. A deep dive into democracy, one constituency at a time.
-        </p>
-        <div class="article-meta">
-        </div>
-        <a href="https://www.youtube.com/watch?v=waUJdt_L_tA" target="_blank" class="read-more-btn">
-            <svg viewBox="0 0 24 24">
-                <path d="M8 5v14l11-7z"/>
-            </svg>
-            Watch Video
-        </a>
-    </div>
-</div>
 
-<div class="article-card">
-    <div class="article-image">
-        <img src="https://img.youtube.com/vi/4BBQ--IAxfc/maxresdefault.jpg" alt="Political Hosting and Anchoring">
-    </div>
-    <div class="article-content">
-        <h4>Political Hosting and Anchoring</h4>
-        <p>
-            Engaged in political hosting and anchoring across key events, election cycles, and issue-based discussions.
-            Moderated live debates, ground reports, and interviews with policymakers, political analysts, and citizens.
-            Focused on simplifying complex political narratives and amplifying grassroots voices.
-            Created space for informed, balanced, and issue-driven conversations during pivotal national moments.
-        </p>    
-        <div class="article-meta">
-        </div>
-        <a href="https://www.youtube.com/watch?v=4BBQ--IAxfc" target="_blank" class="read-more-btn">
-            <svg viewBox="0 0 24 24">
-                <path d="M8 5v14l11-7z"/>
-            </svg>
-            Watch Video
-        </a>
-    </div>
-</div>
+                    <div class="article-card">
+                        <div class="article-image">
+                            <img src="https://img.youtube.com/vi/waUJdt_L_tA/maxresdefault.jpg" alt="BKDF Video Links">
+                        </div>
+                        <div class="article-content">
+                            <h4>BKDF Video Links</h4>
+                            <p>Covered the Lok Sabha Elections 2024 from various constituencies across India, focusing on key issues, voter sentiments, and regional dynamics. Explored how local narratives shaped national discourse during this pivotal election. Captured stories from the ground — beyond headlines and soundbites. A deep dive into democracy, one constituency at a time.</p>
+                            <div class="article-meta"></div>
+                            <a href="https://www.youtube.com/watch?v=waUJdt_L_tA" target="_blank" class="read-more-btn">
+                                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                Watch Video
+                            </a>
+                        </div>
+                    </div>
 
-<div class="article-card">
-    <div class="article-image">
-        <img src="https://img.youtube.com/vi/zwr1sCTTo6c/maxresdefault.jpg" alt="In Conversation with Former CM of Tamil Nadu">
-    </div>
-    <div class="article-content">
-        <h4>In Conversation with Former CM of Tamil Nadu</h4>
-        <p>
-            In Conversation with Former CM of Tamil Nadu _ OPS during Lok Sabha Elections 2024
-        </p>
-        <div class="article-meta">
-        </div>
-        <a href="https://www.youtube.com/watch?v=zwr1sCTTo6c" target="_blank" class="read-more-btn">
-            <svg viewBox="0 0 24 24">
-                <path d="M8 5v14l11-7z"/>
-            </svg>
-            Watch Video
-        </a>
-    </div>
-</div>
+                    <div class="article-card">
+                        <div class="article-image">
+                            <img src="https://img.youtube.com/vi/4BBQ--IAxfc/maxresdefault.jpg" alt="Political Hosting and Anchoring">
+                        </div>
+                        <div class="article-content">
+                            <h4>Political Hosting and Anchoring</h4>
+                            <p>Engaged in political hosting and anchoring across key events, election cycles, and issue-based discussions. Moderated live debates, ground reports, and interviews with policymakers, political analysts, and citizens. Focused on simplifying complex political narratives and amplifying grassroots voices. Created space for informed, balanced, and issue-driven conversations during pivotal national moments.</p>
+                            <div class="article-meta"></div>
+                            <a href="https://www.youtube.com/watch?v=4BBQ--IAxfc" target="_blank" class="read-more-btn">
+                                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                Watch Video
+                            </a>
+                        </div>
+                    </div>
 
-<div class="article-card">
-    <div class="article-image">
-        <img src="https://img.youtube.com/vi/-26BfZdGF6A/maxresdefault.jpg" alt="In Conversation with Suresh Gopi">
-    </div>
-    <div class="article-content">
-        <h4>In Conversation with Suresh Gopi</h4>
-        <p>
-            In Conversation with Suresh Gopi from his LS Constituency Thrissur during his campaigning for LS Elections 2024
-        </p>
-        <div class="article-meta">
-        </div>
-        <a href="https://www.youtube.com/watch?v=-26BfZdGF6A" target="_blank" class="read-more-btn">
-            <svg viewBox="0 0 24 24">
-                <path d="M8 5v14l11-7z"/>
-            </svg>
-            Watch Video
-        </a>
-    </div>
-</div>
+                    <div class="article-card">
+                        <div class="article-image">
+                            <img src="https://img.youtube.com/vi/zwr1sCTTo6c/maxresdefault.jpg" alt="In Conversation with Former CM of Tamil Nadu">
+                        </div>
+                        <div class="article-content">
+                            <h4>In Conversation with Former CM of Tamil Nadu</h4>
+                            <p>In Conversation with Former CM of Tamil Nadu _ OPS during Lok Sabha Elections 2024</p>
+                            <div class="article-meta"></div>
+                            <a href="https://www.youtube.com/watch?v=zwr1sCTTo6c" target="_blank" class="read-more-btn">
+                                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                Watch Video
+                            </a>
+                        </div>
+                    </div>
 
-<div class="article-card">
-    <div class="article-image">
-        <img src="https://img.youtube.com/vi/t-HTV5FXZoU/maxresdefault.jpg" alt="Aspirational Districts and Block Program">
-    </div>
-    <div class="article-content">
-        <h4>Aspirational Districts and Block Program: Empowering New India</h4>
-        <p>
-            Documentary on _ The Aspirational Districts and Block Program, under which the quality of life for over 25 crore people across 112 districts has changed, is making strides in enhancing the Aspirational Block Program which applies to 500 Blocks, a pioneering initiative under the visionary leadership of Prime Minister Narendra Modi.    
-        </p>
-        <div class="article-meta">
-        </div>
-        <a href="https://www.youtube.com/watch?v=t-HTV5FXZoU" target="_blank" class="read-more-btn">
-            <svg viewBox="0 0 24 24">
-                <path d="M8 5v14l11-7z"/>
-            </svg>
-            Watch Video
-        </a>
-    </div>
-</div>
+                    <div class="article-card">
+                        <div class="article-image">
+                            <img src="https://img.youtube.com/vi/-26BfZdGF6A/maxresdefault.jpg" alt="In Conversation with Suresh Gopi">
+                        </div>
+                        <div class="article-content">
+                            <h4>In Conversation with Suresh Gopi</h4>
+                            <p>In Conversation with Suresh Gopi from his LS Constituency Thrissur during his campaigning for LS Elections 2024</p>
+                            <div class="article-meta"></div>
+                            <a href="https://www.youtube.com/watch?v=-26BfZdGF6A" target="_blank" class="read-more-btn">
+                                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                Watch Video
+                            </a>
+                        </div>
+                    </div>
 
-<div class="article-card">
-    <div class="article-image">
-        <img src="https://img.youtube.com/vi/Do_15ha3zyk/maxresdefault.jpg" alt="In Conversation with Ex Union Minister Smriti Irani">
-    </div>
-    <div class="article-content">
-        <h4>In Conversation with Ex Union Minister Smriti Irani</h4>
-        <p>
-            In Conversation with Ex Union Minister Smriti Irani in Amethi during Lok Sabha Elections 2024
-        </p>
-        <div class="article-meta">
-        </div>
-        <a href="https://www.youtube.com/watch?v=Do_15ha3zyk" target="_blank" class="read-more-btn">
-            <svg viewBox="0 0 24 24">
-                <path d="M8 5v14l11-7z"/>
-            </svg>
-            Watch Video
-        </a>
-    </div>
-</div>
+                    <div class="article-card">
+                        <div class="article-image">
+                            <img src="https://img.youtube.com/vi/t-HTV5FXZoU/maxresdefault.jpg" alt="Aspirational Districts and Block Program">
+                        </div>
+                        <div class="article-content">
+                            <h4>Aspirational Districts and Block Program: Empowering New India</h4>
+                            <p>Documentary on _ The Aspirational Districts and Block Program, under which the quality of life for over 25 crore people across 112 districts has changed, is making strides in enhancing the Aspirational Block Program which applies to 500 Blocks, a pioneering initiative under the visionary leadership of Prime Minister Narendra Modi.</p>
+                            <div class="article-meta"></div>
+                            <a href="https://www.youtube.com/watch?v=t-HTV5FXZoU" target="_blank" class="read-more-btn">
+                                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                Watch Video
+                            </a>
+                        </div>
+                    </div>
 
-<div class="article-card">
-    <div class="article-image">
-        <img src="https://img.youtube.com/vi/90uyfmcv53U/maxresdefault.jpg" alt="Ground Stories from Kashmir">
-    </div>
-    <div class="article-content">
-        <h4>Ground Stories from Kashmir</h4>
-        <p>
-            Ground Stories from Lal Chowk Kashmir on Abrogation on Article 370!
-        </p>
-        <div class="article-meta">
-            <span>Published: 2024</span>
-            <span>Ground Report</span>
-        </div>
-        <a href="https://www.youtube.com/watch?v=90uyfmcv53U" target="_blank" class="read-more-btn">
-            <svg viewBox="0 0 24 24">
-                <path d="M8 5v14l11-7z"/>
-            </svg>
-            Watch Video
-        </a>
-    </div>
-</div>
+                    <div class="article-card">
+                        <div class="article-image">
+                            <img src="https://img.youtube.com/vi/Do_15ha3zyk/maxresdefault.jpg" alt="In Conversation with Ex Union Minister Smriti Irani">
+                        </div>
+                        <div class="article-content">
+                            <h4>In Conversation with Ex Union Minister Smriti Irani</h4>
+                            <p>In Conversation with Ex Union Minister Smriti Irani in Amethi during Lok Sabha Elections 2024</p>
+                            <div class="article-meta"></div>
+                            <a href="https://www.youtube.com/watch?v=Do_15ha3zyk" target="_blank" class="read-more-btn">
+                                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                Watch Video
+                            </a>
+                        </div>
+                    </div>
 
-<div class="article-card">
-    <div class="article-image">
-        <div class="youtube-thumbnail-placeholder" data-video-id="">
-            <div class="youtube-placeholder-content">
-                <div class="youtube-play-button">📝</div>
-                <p>Blog Articles</p>
-                <span>Personal thoughts and insights</span>
-            </div>
-        </div>
-    </div>
-    <div class="article-content">
-        <h4>Avantika's Thoughts Blog</h4>
-        <p>
-            Personal blog featuring thoughts on politics, policy analysis, and contemporary issues. A space for deeper reflection and detailed commentary on current affairs.
-        </p>
-        <div class="article-meta">
-            <span>Updated regularly</span>
-            <span>Blog Posts</span>
-        </div>
-        <a href="https://avantikasthoughts.home.blog/" target="_blank" class="read-more-btn">
-            <svg viewBox="0 0 24 24">
-                <path d="M8 5v14l11-7z"/>
-            </svg>
-            Read Blog
-        </a>
-    </div>
-</div>
-                        <!-- <div class="article-content">
+                    <div class="article-card">
+                        <div class="article-image">
+                            <img src="https://img.youtube.com/vi/90uyfmcv53U/maxresdefault.jpg" alt="Ground Stories from Kashmir">
+                        </div>
+                        <div class="article-content">
+                            <h4>Ground Stories from Kashmir</h4>
+                            <p>Ground Stories from Lal Chowk Kashmir on Abrogation on Article 370!</p>
+                            <div class="article-meta">
+                                <span>Published: 2024</span>
+                                <span>Ground Report</span>
+                            </div>
+                            <a href="https://www.youtube.com/watch?v=90uyfmcv53U" target="_blank" class="read-more-btn">
+                                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                Watch Video
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="article-card">
+                        <div class="article-image">
+                            <div class="youtube-thumbnail-placeholder" data-video-id="">
+                                <div class="youtube-placeholder-content">
+                                    <div class="youtube-play-button">📝</div>
+                                    <p>Blog Articles</p>
+                                    <span>Personal thoughts and insights</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="article-content">
                             <h4>Avantika's Thoughts Blog</h4>
-                            <p>
-                                Personal blog featuring thoughts on politics, policy analysis, and contemporary issues. A space for deeper reflection and detailed commentary on current affairs.
-                            </p>
+                            <p>Personal blog featuring thoughts on politics, policy analysis, and contemporary issues. A space for deeper reflection and detailed commentary on current affairs.</p>
                             <div class="article-meta">
                                 <span>Updated regularly</span>
                                 <span>Blog Posts</span>
                             </div>
                             <a href="https://avantikasthoughts.home.blog/" target="_blank" class="read-more-btn">
-                                <svg viewBox="0 0 24 24">
-                                    <path d="M8 5v14l11-7z"/>
-                                </svg>
+                                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                                 Read Blog
                             </a>
                         </div>
                     </div>
                 </div>
-                 -->
-                <!-- Navigation Arrows -->
-                <div class="slider-nav prev" id="prevBtn">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/>
-                    </svg>
-                </div>
-                <div class="slider-nav next" id="nextBtn">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
-                    </svg>
-                </div>
             </div>
-            
-            <!-- Slider Indicators -->
-            <div class="slider-indicators" id="sliderIndicators"></div>
         </div>
-    </section>
+    </div>
+</section>
 
-         <!-- Content Management Section -->
+
+        <!-- Content Management Section -->
         <section id="content">
             <div class="container">
                 <h2>Content Management</h2>
@@ -1650,44 +1749,69 @@
             </div>
         </section>
 
-         <!-- Expertise Section -->
-        <section id="expertise">
-            <div class="container">
-                <h2>Areas of Expertise</h2>
-                <div class="expertise-grid animate-on-scroll">
-                    <div class="expertise-card">
-                        <div class="expertise-icon">🔍</div>
-                        <h4>Investigative Reporting</h4>
-                        <p>Deep-dive investigations into complex stories requiring extensive research, source verification, and careful fact-checking to uncover hidden truths.</p>
-                    </div>
-                    <div class="expertise-card">
-                        <div class="expertise-icon">🌐</div>
-                        <h4>International Affairs</h4>
-                        <p>Covering global political developments, diplomatic relations, and international conflicts with cultural sensitivity and comprehensive analysis.</p>
-                    </div>
-                    <div class="expertise-card">
-                        <div class="expertise-icon">📈</div>
-                        <h4>Economic Journalism</h4>
-                        <p>Breaking down complex financial stories and economic trends into accessible narratives for general audiences while maintaining accuracy.</p>
-                    </div>
-                    <div class="expertise-card">
-                        <div class="expertise-icon">⚖️</div>
-                        <h4>Legal Affairs</h4>
-                        <p>Court reporting and legal analysis, covering high-profile cases, policy changes, and their impact on society and individual rights.</p>
-                    </div>
-                    <div class="expertise-card">
-                        <div class="expertise-icon">🎭</div>
-                        <h4>Cultural Reporting</h4>
-                        <p>Arts, entertainment, and cultural event coverage with focus on social impact and community significance of cultural movements.</p>
-                    </div>
-                    <div class="expertise-card">
-                        <div class="expertise-icon">📚</div>
-                        <h4>Educational Content</h4>
-                        <p>Creating educational materials and workshops for aspiring journalists, sharing knowledge about ethical reporting and professional development.</p>
+
+<!-- Expertise Section -->
+<section id="expertise">
+    <div class="container">
+        <h2>Featured Work</h2>
+        <div class="expertise-grid animate-on-scroll">
+            <!-- TVC 1 -->
+            <a href="https://www.instagram.com/p/CiNWrblDd3p/?hl=en" target="_blank" class="expertise-card">
+                <img src="bts (2).jpg" alt="TVC Campaign 1" class="expertise-bg">
+                <div class="expertise-overlay">
+                    <div class="expertise-content">
+                        <h4>Television Commercial</h4>
+                        <p>Creative advertising campaign showcasing brand storytelling and visual impact</p>
                     </div>
                 </div>
-            </div>
-        </section>
+            </a>
+
+            <!-- TVC 2 -->
+            <a href="https://www.instagram.com/p/CpfjkUSDfiK/?hl=en" target="_blank" class="expertise-card">
+                <img src="bts (10).JPG" alt="TVC Campaign 2" class="expertise-bg">
+                <div class="expertise-overlay">
+                    <div class="expertise-content">
+                        <h4>Television Commercial</h4>
+                        <p>Innovative advertising content with compelling narrative and production quality</p>
+                    </div>
+                </div>
+            </a>
+
+            <!-- TVC 3 -->
+            <a href="https://www.instagram.com/p/COSn3uyFo3g/?hl=en" target="_blank" class="expertise-card">
+                <img src="bts (4).JPG" alt="TVC Campaign 3" class="expertise-bg">
+                <div class="expertise-overlay">
+                    <div class="expertise-content">
+                        <h4>Television Commercial</h4>
+                        <p>Strategic brand communication through engaging visual storytelling</p>
+                    </div>
+                </div>
+            </a>
+
+            <!-- TVC 4 -->
+            <a href="https://www.instagram.com/p/CKMMTB4FUaL/?hl=en" target="_blank" class="expertise-card">
+                <img src="bts (6).JPG" alt="TVC Campaign 4" class="expertise-bg">
+                <div class="expertise-overlay">
+                    <div class="expertise-content">
+                        <h4>Television Commercial</h4>
+                        <p>Professional commercial production with creative direction and execution</p>
+                    </div>
+                </div>
+            </a>
+
+            <!-- YouTube Movie -->
+            <a href="https://www.youtube.com/watch?v=Lj8lxWOlTcA" target="_blank" class="expertise-card">
+                <img src="https://img.youtube.com/vi/Lj8lxWOlTcA/maxresdefault.jpg" alt="Moonlight Movie" class="expertise-bg">
+                <div class="expertise-overlay">
+                    <div class="expertise-content">
+                        <h4>Moonlight Movie</h4>
+                        <p>MADAM is the BOSS ka ATYACHAAR - Creative storytelling and production showcase</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
 
         <!-- Contact Section -->
         <section id="contact">
@@ -1727,465 +1851,438 @@
             </div>
         </section>
 
-        <script>
-            // Smooth scrolling for navigation
-            document.querySelectorAll('nav a').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
+       <script>
+    // Smooth scrolling for navigation
+    document.querySelectorAll('nav a').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').substring(1);
+            const targetSection = document.getElementById(targetId);
+            targetSection.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        });
+    });
+
+    // Navbar background on scroll and active section highlighting
+    window.addEventListener('scroll', () => {
+        const navbar = document.getElementById('navbar');
+        if (window.scrollY > 100) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+
+        // Active section highlighting
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('nav a');
+        let current = '';
+
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            if (pageYOffset >= (sectionTop - 300)) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href').substring(1) === current) {
+                link.classList.add('active');
+            }
+        });
+    });
+
+    // Scroll animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animated');
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.animate-on-scroll').forEach(el => {
+        observer.observe(el);
+    });
+
+    // Create floating particles
+    function createParticles() {
+        const particlesContainer = document.getElementById('particles');
+        const particleCount = 40;
+
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 8 + 's';
+            particle.style.animationDuration = (Math.random() * 4 + 4) + 's';
+            particlesContainer.appendChild(particle);
+        }
+    }
+
+    // Initialize particles
+    createParticles();
+
+    // Add stagger animation to content items
+    const contentItems = document.querySelectorAll('.content-item');
+    contentItems.forEach((item, index) => {
+        item.style.animationDelay = `${index * 0.1}s`;
+        item.style.opacity = '0';
+        item.style.transform = 'translateY(30px)';
+        item.style.animation = `fadeInUp 0.8s ease ${index * 0.1}s forwards`;
+    });
+
+    // Article Slider with Horizontal Scroll
+    document.addEventListener('DOMContentLoaded', function() {
+        initializeArticlesScroll();
+    });
+
+    function initializeArticlesScroll() {
+        const scrollWrapper = document.querySelector('.articles-scroll-wrapper');
+        const slider = document.getElementById('articlesSlider');
+        
+        if (!scrollWrapper || !slider) return;
+
+        // Smooth scroll with mouse wheel
+        scrollWrapper.addEventListener('wheel', function(e) {
+            // Only handle horizontal scrolling when mouse wheel is used
+            if (Math.abs(e.deltaX) < Math.abs(e.deltaY)) {
+                e.preventDefault();
+                this.scrollLeft += e.deltaY > 0 ? 80 : -80;
+            }
+        }, { passive: false });
+
+        // Touch/Swipe support for mobile
+        let startX, scrollLeft, isDown = false;
+
+        scrollWrapper.addEventListener('touchstart', function(e) {
+            startX = e.touches[0].pageX - this.offsetLeft;
+            scrollLeft = this.scrollLeft;
+        });
+
+        scrollWrapper.addEventListener('touchmove', function(e) {
+            if (!startX) return;
+            e.preventDefault();
+            const x = e.touches[0].pageX - this.offsetLeft;
+            const walk = (x - startX) * 2;
+            this.scrollLeft = scrollLeft - walk;
+        }, { passive: false });
+
+        scrollWrapper.addEventListener('touchend', function() {
+            startX = null;
+        });
+
+        // Mouse drag support for desktop
+        scrollWrapper.addEventListener('mousedown', function(e) {
+            isDown = true;
+            scrollWrapper.style.cursor = 'grabbing';
+            startX = e.pageX - this.offsetLeft;
+            scrollLeft = this.scrollLeft;
+        });
+
+        scrollWrapper.addEventListener('mouseleave', function() {
+            isDown = false;
+            scrollWrapper.style.cursor = 'grab';
+        });
+
+        scrollWrapper.addEventListener('mouseup', function() {
+            isDown = false;
+            scrollWrapper.style.cursor = 'grab';
+        });
+
+        scrollWrapper.addEventListener('mousemove', function(e) {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - this.offsetLeft;
+            const walk = (x - startX) * 2;
+            this.scrollLeft = scrollLeft - walk;
+        });
+
+        // Keyboard navigation
+        scrollWrapper.setAttribute('tabindex', '0');
+        scrollWrapper.addEventListener('keydown', function(e) {
+            switch(e.key) {
+                case 'ArrowLeft':
                     e.preventDefault();
-                    const targetId = this.getAttribute('href').substring(1);
-                    const targetSection = document.getElementById(targetId);
-                    targetSection.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                });
-            });
-
-            // Navbar background on scroll and active section highlighting
-            window.addEventListener('scroll', () => {
-                const navbar = document.getElementById('navbar');
-                if (window.scrollY > 100) {
-                    navbar.classList.add('scrolled');
-                } else {
-                    navbar.classList.remove('scrolled');
-                }
-
-                // Active section highlighting
-                const sections = document.querySelectorAll('section');
-                const navLinks = document.querySelectorAll('nav a');
-                let current = '';
-
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop;
-                    const sectionHeight = section.clientHeight;
-                    if (pageYOffset >= (sectionTop - 300)) {
-                        current = section.getAttribute('id');
-                    }
-                });
-
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href').substring(1) === current) {
-                        link.classList.add('active');
-                    }
-                });
-            });
-
-            // Scroll animations
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -100px 0px'
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('animated');
-                    }
-                });
-            }, observerOptions);
-
-            document.querySelectorAll('.animate-on-scroll').forEach(el => {
-                observer.observe(el);
-            });
-
-            // Create floating particles
-            function createParticles() {
-                const particlesContainer = document.getElementById('particles');
-                const particleCount = 40;
-
-                for (let i = 0; i < particleCount; i++) {
-                    const particle = document.createElement('div');
-                    particle.className = 'particle';
-                    particle.style.left = Math.random() * 100 + '%';
-                    particle.style.animationDelay = Math.random() * 8 + 's';
-                    particle.style.animationDuration = (Math.random() * 4 + 4) + 's';
-                    particlesContainer.appendChild(particle);
-                }
-            }
-
-            // Initialize particles
-            createParticles();
-
-            // Add stagger animation to content items
-            const contentItems = document.querySelectorAll('.content-item');
-            contentItems.forEach((item, index) => {
-                item.style.animationDelay = `${index * 0.1}s`;
-                item.style.opacity = '0';
-                item.style.transform = 'translateY(30px)';
-                item.style.animation = `fadeInUp 0.8s ease ${index * 0.1}s forwards`;
-            });
-
-            // Article Slider Functionality
-            let currentSlide = 0;
-            const slider = document.getElementById('articlesSlider');
-            const slides = document.querySelectorAll('.article-card');
-            const totalSlides = slides.length;
-            const slidesToShow = getSlidesToShow();
-            const maxSlide = Math.max(0, totalSlides - slidesToShow);
-
-            function getSlidesToShow() {
-                if (window.innerWidth >= 1200) return 3;
-                if (window.innerWidth >= 768) return 2;
-                return 1;
-            }
-
-            function createIndicators() {
-                const indicatorsContainer = document.getElementById('sliderIndicators');
-                indicatorsContainer.innerHTML = '';
-                
-                const indicatorCount = Math.ceil(totalSlides / slidesToShow);
-                
-                for (let i = 0; i < indicatorCount; i++) {
-                    const indicator = document.createElement('div');
-                    indicator.className = `indicator ${i === 0 ? 'active' : ''}`;
-                    indicator.addEventListener('click', () => goToSlide(i * slidesToShow));
-                    indicatorsContainer.appendChild(indicator);
-                }
-            }
-
-            function updateSlider() {
-                const slideWidth = slides[0].offsetWidth + 32; // 32px gap
-                slider.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
-                
-                // Update indicators
-                const indicators = document.querySelectorAll('.indicator');
-                indicators.forEach((indicator, index) => {
-                    const slideIndex = index * slidesToShow;
-                    indicator.classList.toggle('active', 
-                        currentSlide >= slideIndex && currentSlide < slideIndex + slidesToShow
-                    );
-                });
-            }
-
-            function goToSlide(slideIndex) {
-                currentSlide = Math.max(0, Math.min(slideIndex, maxSlide));
-                updateSlider();
-            }
-
-            function nextSlide() {
-                if (currentSlide < maxSlide) {
-                    currentSlide++;
-                    updateSlider();
-                }
-            }
-
-            function prevSlide() {
-                if (currentSlide > 0) {
-                    currentSlide--;
-                    updateSlider();
-                }
-            }
-
-            // Initialize slider
-            createIndicators();
-            updateSlider();
-
-            // Event listeners
-            document.getElementById('nextBtn').addEventListener('click', nextSlide);
-            document.getElementById('prevBtn').addEventListener('click', prevSlide);
-
-            // Auto-play functionality removed - manual control only
-
-            // Handle window resize
-            window.addEventListener('resize', () => {
-                const newSlidesToShow = getSlidesToShow();
-                if (newSlidesToShow !== slidesToShow) {
-                    location.reload(); // Simple solution for responsive changes
-                }
-            });
-
-            // Touch/Swipe support for mobile
-            let startX, startY, distX, distY;
-            let threshold = 50; // minimum distance to trigger swipe
-
-            const sliderContainer = document.querySelector('.articles-slider-container');
-            sliderContainer.addEventListener('touchstart', (e) => {
-                startX = e.touches[0].clientX;
-                startY = e.touches[0].clientY;
-            });
-
-            sliderContainer.addEventListener('touchmove', (e) => {
-                if (!startX || !startY) return;
-                
-                let currentX = e.touches[0].clientX;
-                let currentY = e.touches[0].clientY;
-                
-                distX = startX - currentX;
-                distY = startY - currentY;
-                
-                // Prevent scrolling if horizontal swipe is detected
-                if (Math.abs(distX) > Math.abs(distY)) {
+                    this.scrollLeft -= 370;
+                    break;
+                case 'ArrowRight':
                     e.preventDefault();
-                }
-            });
+                    this.scrollLeft += 370;
+                    break;
+                case 'Home':
+                    e.preventDefault();
+                    this.scrollLeft = 0;
+                    break;
+                case 'End':
+                    e.preventDefault();
+                    this.scrollLeft = this.scrollWidth;
+                    break;
+            }
+        });
 
-            sliderContainer.addEventListener('touchend', () => {
-                if (Math.abs(distX) < threshold) return;
-                
-                if (distX > 0) {
-                    nextSlide(); // Swipe left
-                } else {
-                    prevSlide(); // Swipe right
-                }
-                
-                startX = null;
-                startY = null;
-                distX = 0;
-                distY = 0;
-            });
-
-            // Professional hover effects for article cards
-            document.querySelectorAll('.article-card').forEach(card => {
-                card.addEventListener('click', function() {
-                    // Simulate article opening
-                    this.style.transform = 'scale(0.98)';
+        // Professional hover effects for article cards
+        document.querySelectorAll('.article-card').forEach(card => {
+            card.addEventListener('click', function(e) {
+                // Only apply effect if not clicking a link
+                if (!e.target.closest('a')) {
+                    this.style.transform = 'translateY(-8px) scale(0.98)';
                     setTimeout(() => {
                         this.style.transform = '';
                     }, 200);
-                });
-            });
-
-            // Add professional typing effect to main title
-            const title = document.querySelector('h1');
-            const originalText = title.textContent;
-            title.textContent = '';
-            let i = 0;
-
-            function typeWriter() {
-                if (i < originalText.length) {
-                    title.textContent += originalText.charAt(i);
-                    i++;
-                    setTimeout(typeWriter, 100);
                 }
+            });
+        });
+    }
+
+    // Add professional typing effect to main title
+    const title = document.querySelector('h1');
+    const originalText = title.textContent;
+    title.textContent = '';
+    let i = 0;
+
+    function typeWriter() {
+        if (i < originalText.length) {
+            title.textContent += originalText.charAt(i);
+            i++;
+            setTimeout(typeWriter, 100);
+        }
+    }
+
+    // Start typing effect after page loads
+    setTimeout(typeWriter, 1000);
+
+    // Professional parallax effect for profile section
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const profileImage = document.querySelector('.profile-image img');
+        if (profileImage) {
+            profileImage.style.transform = `translateY(${scrolled * 0.1}px)`;
+        }
+    });
+
+    // Add professional fade-in effect for credentials
+    const credentials = document.querySelectorAll('.credential-item');
+    credentials.forEach((item, index) => {
+        item.style.opacity = '0';
+        item.style.transform = 'translateX(-30px)';
+        item.style.transition = 'all 0.6s ease';
+        
+        setTimeout(() => {
+            item.style.opacity = '1';
+            item.style.transform = 'translateX(0)';
+        }, 2000 + (index * 200));
+    });
+
+    // Interactive content items
+    document.querySelectorAll('.content-item').forEach(item => {
+        item.addEventListener('mouseenter', function() {
+            this.style.background = 'linear-gradient(135deg, rgba(128, 128, 128, 0.15), rgba(160, 160, 160, 0.1))';
+        });
+        
+        item.addEventListener('mouseleave', function() {
+            this.style.background = 'linear-gradient(135deg, rgba(60, 60, 60, 0.8), rgba(80, 80, 80, 0.5))';
+        });
+    });
+
+    // Professional loading animation
+    document.addEventListener('DOMContentLoaded', function() {
+        const sections = document.querySelectorAll('section');
+        sections.forEach((section, index) => {
+            section.style.animationDelay = `${index * 0.2}s`;
+        });
+    });
+
+    // Add smooth reveal animation for social links
+    const socialLinks = document.querySelectorAll('.social-link');
+    socialLinks.forEach((link, index) => {
+        link.style.opacity = '0';
+        link.style.transform = 'translateY(30px)';
+        link.style.transition = 'all 0.5s ease';
+        
+        setTimeout(() => {
+            link.style.opacity = '1';
+            link.style.transform = 'translateY(0)';
+        }, 3000 + (index * 150));
+    });
+
+    // Professional click feedback for navigation
+    document.querySelectorAll('nav a').forEach(link => {
+        link.addEventListener('click', function(e) {
+            // Add ripple effect
+            const ripple = document.createElement('span');
+            ripple.style.position = 'absolute';
+            ripple.style.borderRadius = '50%';
+            ripple.style.background = 'rgba(255, 255, 255, 0.3)';
+            ripple.style.transform = 'scale(0)';
+            ripple.style.animation = 'ripple 0.6s linear';
+            ripple.style.left = '50%';
+            ripple.style.top = '50%';
+            ripple.style.width = '20px';
+            ripple.style.height = '20px';
+            ripple.style.marginLeft = '-10px';
+            ripple.style.marginTop = '-10px';
+            
+            this.style.position = 'relative';
+            this.appendChild(ripple);
+            
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+        });
+    });
+
+    // Add CSS for ripple animation
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes ripple {
+            to {
+                transform: scale(4);
+                opacity: 0;
             }
+        }
+    `;
+    document.head.appendChild(style);
 
-            // Start typing effect after page loads
-            setTimeout(typeWriter, 1000);
+    // YouTube section animations
+    const youtubeContainers = document.querySelectorAll('.youtube-screenshot-container');
+    youtubeContainers.forEach((container, index) => {
+        container.style.opacity = '0';
+        container.style.transform = 'translateY(50px)';
+        container.style.transition = 'all 0.8s ease';
+        
+        setTimeout(() => {
+            container.style.opacity = '1';
+            container.style.transform = 'translateY(0)';
+        }, 1000 + (index * 300));
+    });
 
-            // Professional parallax effect for profile section
-            window.addEventListener('scroll', () => {
-                const scrolled = window.pageYOffset;
-                const profileImage = document.querySelector('.profile-image img');
-                if (profileImage) {
-                    profileImage.style.transform = `translateY(${scrolled * 0.1}px)`;
-                }
+    // YouTube stats animation
+    const statItems = document.querySelectorAll('.stat-item');
+    statItems.forEach((item, index) => {
+        item.style.opacity = '0';
+        item.style.transform = 'translateY(30px)';
+        item.style.transition = 'all 0.6s ease';
+        
+        setTimeout(() => {
+            item.style.opacity = '1';
+            item.style.transform = 'translateY(0)';
+        }, 1500 + (index * 200));
+    });
+
+    // Content Grid Functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        initializeContentGrid();
+    });
+
+    function initializeContentGrid() {
+        // Interactive hover effects for content items
+        const contentItems = document.querySelectorAll('.content-item');
+        
+        contentItems.forEach(item => {
+            // Mouse enter effect
+            item.addEventListener('mouseenter', function() {
+                this.style.background = 'linear-gradient(135deg, rgba(128, 128, 128, 0.15), rgba(160, 160, 160, 0.1))';
+            });
+            
+            // Mouse leave effect
+            item.addEventListener('mouseleave', function() {
+                this.style.background = 'linear-gradient(135deg, rgba(60, 60, 60, 0.8), rgba(80, 80, 80, 0.5))';
             });
 
-            // Add professional fade-in effect for credentials
-            const credentials = document.querySelectorAll('.credential-item');
-            credentials.forEach((item, index) => {
-                item.style.opacity = '0';
-                item.style.transform = 'translateX(-30px)';
-                item.style.transition = 'all 0.6s ease';
-                
+            // Add click feedback effect
+            item.addEventListener('click', function() {
+                // Add a subtle click animation
+                this.style.transform = 'translateY(-10px) scale(0.98)';
                 setTimeout(() => {
-                    item.style.opacity = '1';
-                    item.style.transform = 'translateX(0)';
-                }, 2000 + (index * 200));
-            });
-
-            // Interactive content items
-            document.querySelectorAll('.content-item').forEach(item => {
-                item.addEventListener('mouseenter', function() {
-                    this.style.background = 'linear-gradient(135deg, rgba(128, 128, 128, 0.15), rgba(160, 160, 160, 0.1))';
-                });
-                
-                item.addEventListener('mouseleave', function() {
-                    this.style.background = 'linear-gradient(135deg, rgba(60, 60, 60, 0.8), rgba(80, 80, 80, 0.5))';
-                });
-            });
-
-            // Professional loading animation
-            document.addEventListener('DOMContentLoaded', function() {
-                const sections = document.querySelectorAll('section');
-                sections.forEach((section, index) => {
-                    section.style.animationDelay = `${index * 0.2}s`;
-                });
-            });
-
-            // Add smooth reveal animation for social links
-            const socialLinks = document.querySelectorAll('.social-link');
-            socialLinks.forEach((link, index) => {
-                link.style.opacity = '0';
-                link.style.transform = 'translateY(30px)';
-                link.style.transition = 'all 0.5s ease';
-                
-                setTimeout(() => {
-                    link.style.opacity = '1';
-                    link.style.transform = 'translateY(0)';
-                }, 3000 + (index * 150));
-            });
-
-            // Professional click feedback for navigation
-            document.querySelectorAll('nav a').forEach(link => {
-                link.addEventListener('click', function(e) {
-                    // Add ripple effect
-                    const ripple = document.createElement('span');
-                    ripple.style.position = 'absolute';
-                    ripple.style.borderRadius = '50%';
-                    ripple.style.background = 'rgba(255, 255, 255, 0.3)';
-                    ripple.style.transform = 'scale(0)';
-                    ripple.style.animation = 'ripple 0.6s linear';
-                    ripple.style.left = '50%';
-                    ripple.style.top = '50%';
-                    ripple.style.width = '20px';
-                    ripple.style.height = '20px';
-                    ripple.style.marginLeft = '-10px';
-                    ripple.style.marginTop = '-10px';
-                    
-                    this.style.position = 'relative';
-                    this.appendChild(ripple);
-                    
-                    setTimeout(() => {
-                        ripple.remove();
-                    }, 600);
-                });
-            });
-
-            // Add CSS for ripple animation
-            const style = document.createElement('style');
-            style.textContent = `
-                @keyframes ripple {
-                    to {
-                        transform: scale(4);
-                        opacity: 0;
-                    }
-                }
-            `;
-            document.head.appendChild(style);
-
-            // YouTube section animations
-            const youtubeContainers = document.querySelectorAll('.youtube-screenshot-container');
-            youtubeContainers.forEach((container, index) => {
-                container.style.opacity = '0';
-                container.style.transform = 'translateY(50px)';
-                container.style.transition = 'all 0.8s ease';
-                
-                setTimeout(() => {
-                    container.style.opacity = '1';
-                    container.style.transform = 'translateY(0)';
-                }, 1000 + (index * 300));
-            });
-
-            // YouTube stats animation
-            const statItems = document.querySelectorAll('.stat-item');
-            statItems.forEach((item, index) => {
-                item.style.opacity = '0';
-                item.style.transform = 'translateY(30px)';
-                item.style.transition = 'all 0.6s ease';
-                
-                setTimeout(() => {
-                    item.style.opacity = '1';
-                    item.style.transform = 'translateY(0)';
-                }, 1500 + (index * 200));
-            });
-
-            // Content Grid Functionality
-            document.addEventListener('DOMContentLoaded', function() {
-                initializeContentGrid();
-            });
-
-            function initializeContentGrid() {
-                // Interactive hover effects for content items
-                const contentItems = document.querySelectorAll('.content-item');
-                
-                contentItems.forEach(item => {
-                    // Mouse enter effect
-                    item.addEventListener('mouseenter', function() {
-                        this.style.background = 'linear-gradient(135deg, rgba(128, 128, 128, 0.15), rgba(160, 160, 160, 0.1))';
-                    });
-                    
-                    // Mouse leave effect
-                    item.addEventListener('mouseleave', function() {
-                        this.style.background = 'linear-gradient(135deg, rgba(60, 60, 60, 0.8), rgba(80, 80, 80, 0.5))';
-                    });
-
-                    // Add click feedback effect
-                    item.addEventListener('click', function() {
-                        // Add a subtle click animation
-                        this.style.transform = 'translateY(-10px) scale(0.98)';
-                        setTimeout(() => {
-                            this.style.transform = '';
-                        }, 150);
-                    });
-                });
-
-                // Smooth scroll behavior for content grid
-                const contentGridWrapper = document.querySelector('.content-grid-wrapper');
-                
-                if (contentGridWrapper) {
-                    // Add smooth scrolling with mouse wheel
-                    contentGridWrapper.addEventListener('wheel', function(e) {
-                        // Only handle horizontal scrolling
-                        if (Math.abs(e.deltaX) < Math.abs(e.deltaY)) {
-                            e.preventDefault();
-                            this.scrollLeft += e.deltaY > 0 ? 50 : -50;
-                        }
-                    });
-
-                    // Add keyboard navigation support
-                    contentGridWrapper.setAttribute('tabindex', '0');
-                    
-                    contentGridWrapper.addEventListener('keydown', function(e) {
-                        switch(e.key) {
-                            case 'ArrowLeft':
-                                e.preventDefault();
-                                this.scrollLeft -= 100;
-                                break;
-                            case 'ArrowRight':
-                                e.preventDefault();
-                                this.scrollLeft += 100;
-                                break;
-                            case 'Home':
-                                e.preventDefault();
-                                this.scrollLeft = 0;
-                                break;
-                            case 'End':
-                                e.preventDefault();
-                                this.scrollLeft = this.scrollWidth;
-                                break;
-                        }
-                    });
-                }
-            }
-
-            // Video play/pause optimization
-            document.addEventListener('DOMContentLoaded', function() {
-                const videos = document.querySelectorAll('.content-item video');
-                
-                videos.forEach(video => {
-                    // Pause other videos when one starts playing
-                    video.addEventListener('play', function() {
-                        videos.forEach(otherVideo => {
-                            if (otherVideo !== video && !otherVideo.paused) {
-                                otherVideo.pause();
-                            }
-                        });
-                    });
-
-                    // Add loading optimization
-                    video.setAttribute('preload', 'metadata');
-                    
-                    // Add error handling
-                    video.addEventListener('error', function() {
-                        console.log('Video failed to load:', video.src);
-                    });
-                });
-            });
-
-            // Handle window resize for responsive behavior
-            window.addEventListener('resize', function() {
-                // Debounce resize events
-                clearTimeout(this.resizeTimeout);
-                this.resizeTimeout = setTimeout(function() {
-                    // Reset scroll position on significant layout changes
-                    const contentGridWrapper = document.querySelector('.content-grid-wrapper');
-                    if (contentGridWrapper && window.innerWidth <= 768) {
-                        contentGridWrapper.scrollLeft = 0;
-                    }
+                    this.style.transform = '';
                 }, 150);
-            });      
-        </script>
+            });
+        });
+
+        // Smooth scroll behavior for content grid
+        const contentGridWrapper = document.querySelector('.content-grid-wrapper');
+        
+        if (contentGridWrapper) {
+            // Add smooth scrolling with mouse wheel
+            contentGridWrapper.addEventListener('wheel', function(e) {
+                // Only handle horizontal scrolling
+                if (Math.abs(e.deltaX) < Math.abs(e.deltaY)) {
+                    e.preventDefault();
+                    this.scrollLeft += e.deltaY > 0 ? 50 : -50;
+                }
+            });
+
+            // Add keyboard navigation support
+            contentGridWrapper.setAttribute('tabindex', '0');
+            
+            contentGridWrapper.addEventListener('keydown', function(e) {
+                switch(e.key) {
+                    case 'ArrowLeft':
+                        e.preventDefault();
+                        this.scrollLeft -= 100;
+                        break;
+                    case 'ArrowRight':
+                        e.preventDefault();
+                        this.scrollLeft += 100;
+                        break;
+                    case 'Home':
+                        e.preventDefault();
+                        this.scrollLeft = 0;
+                        break;
+                    case 'End':
+                        e.preventDefault();
+                        this.scrollLeft = this.scrollWidth;
+                        break;
+                }
+            });
+        }
+    }
+
+    // Video play/pause optimization
+    document.addEventListener('DOMContentLoaded', function() {
+        const videos = document.querySelectorAll('.content-item video');
+        
+        videos.forEach(video => {
+            // Pause other videos when one starts playing
+            video.addEventListener('play', function() {
+                videos.forEach(otherVideo => {
+                    if (otherVideo !== video && !otherVideo.paused) {
+                        otherVideo.pause();
+                    }
+                });
+            });
+
+            // Add loading optimization
+            video.setAttribute('preload', 'metadata');
+            
+            // Add error handling
+            video.addEventListener('error', function() {
+                console.log('Video failed to load:', video.src);
+            });
+        });
+    });
+
+    // Handle window resize for responsive behavior
+    window.addEventListener('resize', function() {
+        // Debounce resize events
+        clearTimeout(this.resizeTimeout);
+        this.resizeTimeout = setTimeout(function() {
+            // Reset scroll position on significant layout changes
+            const contentGridWrapper = document.querySelector('.content-grid-wrapper');
+            if (contentGridWrapper && window.innerWidth <= 768) {
+                contentGridWrapper.scrollLeft = 0;
+            }
+        }, 150);
+    });
+</script>
     </body>
 </html>
